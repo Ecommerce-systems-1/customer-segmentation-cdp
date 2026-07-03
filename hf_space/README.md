@@ -6,6 +6,7 @@ colorTo: gray
 sdk: docker
 app_port: 7860
 pinned: false
+short_description: B2B account segmentation + interpretable churn scoring
 ---
 
 # B2B Customer Segmentation & Churn Predictor
