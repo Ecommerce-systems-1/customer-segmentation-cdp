@@ -8,8 +8,8 @@ type Endpoint = {
   headers?: Record<string, string>;
 };
 
-const TITLE = "Customer Segmentation CDP";
-const TAGLINE = "200 synthetic customers scored on RFM and clustered into 5 segments with KMeans.";
+const TITLE = "B2B Customer Segmentation & Churn Predictor";
+const TAGLINE = "300 synthetic cloud-services accounts (Large/Medium/Small companies) segmented with KMeans and churn-scored by an interpretable logistic-regression model.";
 
 const ENDPOINTS: Endpoint[] = [
   {
@@ -23,19 +23,34 @@ const ENDPOINTS: Endpoint[] = [
     "path": "/api/segments"
   },
   {
-    "label": "Champions",
+    "label": "At-Risk accounts",
     "method": "GET",
-    "path": "/api/customers?segment=Champions&page=1&page_size=10"
+    "path": "/api/accounts?segment=At-Risk&page=1&page_size=10"
   },
   {
-    "label": "One customer profile",
+    "label": "Critical-risk small accounts",
     "method": "GET",
-    "path": "/api/customers/cust-0001"
+    "path": "/api/accounts?risk_band=Critical&size_tier=Small&page=1&page_size=10"
   },
   {
-    "label": "Re-run clustering",
+    "label": "One account with churn drivers",
+    "method": "GET",
+    "path": "/api/accounts/acct-0001"
+  },
+  {
+    "label": "Churn risk summary",
+    "method": "GET",
+    "path": "/api/churn/summary"
+  },
+  {
+    "label": "Model metrics & coefficients",
+    "method": "GET",
+    "path": "/api/churn/model"
+  },
+  {
+    "label": "Recompute segments + churn scores",
     "method": "POST",
-    "path": "/api/segments/refresh"
+    "path": "/api/refresh"
   }
 ];
 

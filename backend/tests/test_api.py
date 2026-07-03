@@ -1,4 +1,3 @@
-import pytest
 from fastapi.testclient import TestClient
 from app.main import app
 
@@ -7,4 +6,8 @@ client = TestClient(app)
 def test_health():
     resp = client.get("/health")
     assert resp.status_code == 200
-    assert resp.json()["status"] == "ok"
+    body = resp.json()
+    assert body["status"] == "ok"
+    assert body["accounts"] == 300
+    assert body["segmented"] == 300
+    assert body["churn_scored"] == 300
