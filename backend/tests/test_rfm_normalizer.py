@@ -1,4 +1,5 @@
-from services.rfm_normalizer import RFMNormalizer
+import pytest
+from app.services.rfm_normalizer import RFMNormalizer
 
 def test_normalizer_scales_to_0_1():
     data = [

@@ -1,6 +1,6 @@
 import sqlite3, pytest
 from datetime import date, timedelta
-from services.rfm_calculator import RFMCalculator
+from app.services.rfm_calculator import RFMCalculator
 
 @pytest.fixture
 def db(tmp_path):

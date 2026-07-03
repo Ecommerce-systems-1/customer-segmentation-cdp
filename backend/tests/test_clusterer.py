@@ -1,5 +1,5 @@
 import pytest
-from services.clusterer import KMeansClusterer
+from app.services.clusterer import KMeansClusterer
 
 def make_rfm_rows(n=100):
     import random

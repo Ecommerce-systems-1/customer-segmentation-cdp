@@ -8,11 +8,11 @@ class RFMNormalizer:
             for r in rfm_data:
                 r.update({"rfm_r_norm": 0.5, "rfm_f_norm": 0.5, "rfm_m_norm": 0.5})
             return rfm_data
-        # Recency: invert (lower days = better customer → higher norm score)
+        # Raw min-max on all three axes; recency stays uninverted (low = recent
+        # = better) — the clusterer accounts for direction when ranking segments
         matrix = np.array([[r["recency"], r["frequency"], r["monetary"]] for r in valid])
         scaler = MinMaxScaler()
         scaled = scaler.fit_transform(matrix)
-        scaled[:, 0] = 1 - scaled[:, 0]  # invert recency
         for i, r in enumerate(valid):
             r["rfm_r_norm"] = float(scaled[i, 0])
             r["rfm_f_norm"] = float(scaled[i, 1])

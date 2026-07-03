@@ -21,7 +21,8 @@ class KMeansClusterer:
         return rfm_data
 
     def _assign_labels(self, centers: np.ndarray) -> dict:
-        # Score each centroid: sum of R+F+M norms; highest = Champions
-        scores = centers.sum(axis=1)
+        # Recency norm is uninverted (low = recent = better), so score with
+        # (1 - R) + F + M; highest = Champions
+        scores = (1 - centers[:, 0]) + centers[:, 1] + centers[:, 2]
         ranked = np.argsort(scores)[::-1]  # descending
         return {int(cluster_id): SEGMENT_LABELS[rank] for rank, cluster_id in enumerate(ranked)}
